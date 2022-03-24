@@ -1,4 +1,7 @@
 import { createGlobalStyle } from "styled-components"
+import theme from "./theme.yml"
+
+const { colors } = theme
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -12,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background-color: ${colors.eigengrau};
     font-weight: 400;
   }
 
@@ -20,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
   h3,
   h4,
   h5 {
-    color: slategray;
+    color: ${colors.lightRed};
     font-weight: 600;
   }
 `

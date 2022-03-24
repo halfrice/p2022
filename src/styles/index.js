@@ -1,3 +1,4 @@
 import GlobalStyles from "./globals"
+import theme from "./theme.yml"
 
-export { GlobalStyles }
+export { GlobalStyles, theme }
