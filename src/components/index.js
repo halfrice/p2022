@@ -1,4 +1,4 @@
 import Layout from "./layout"
-import Splash from "./Splash"
+import Splash from "./splash"
 
 export { Layout, Splash }

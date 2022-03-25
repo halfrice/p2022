@@ -8,15 +8,16 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    background-color: ${colors.eigengrau};
+    font-weight: 400;
+    min-height: 100vh;
+  }
+
   *,
   *:before,
   *:after {
     box-sizing: inherit;
-  }
-
-  body {
-    background-color: ${colors.eigengrau};
-    font-weight: 400;
   }
 
   h1,

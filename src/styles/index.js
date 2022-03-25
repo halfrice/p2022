@@ -1,4 +1,5 @@
 import GlobalStyles from "./globals"
+import mixins from "./mixins"
 import theme from "./theme.yml"
 
-export { GlobalStyles, theme }
+export { GlobalStyles, mixins, theme }
