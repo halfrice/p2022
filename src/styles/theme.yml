@@ -23,3 +23,5 @@ colors:
   darkBlue: "#0969F9"
   darkPurple: "#9A2DFF"
   purple: "#EF1FFF"
+
+easing: "cubic-bezier(0.37, 0, 0.63, 1)"

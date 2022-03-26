@@ -28,5 +28,14 @@ const GlobalStyles = createGlobalStyle`
     color: ${colors.lightRed};
     font-weight: 600;
   }
+
+  .fade-enter {
+    opacity: 0;
+    transition: opacity 938ms ${theme.easing};
+  }
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 938ms ${theme.easing};
+  }
 `
 export default GlobalStyles
