@@ -25,3 +25,8 @@ colors:
   purple: "#EF1FFF"
 
 easing: "cubic-bezier(0.37, 0, 0.63, 1)"
+transition: "all 469s cubic-bezier(0.37, 0, 0.63, 1)"
+
+nav:
+  height: "2.75rem"
+  heightMobile: "3rem"

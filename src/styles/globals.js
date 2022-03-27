@@ -29,6 +29,19 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 600;
   }
 
+  a {
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 0.75;
+    }
+  }
+
   .fade-enter {
     opacity: 0;
     transition: opacity 938ms ${theme.easing};

@@ -8,6 +8,16 @@ const mixins = {
       justify-content: center;
       align-items: center;
     `,
+    between: css`
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    `,
+    start: css`
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    `,
   },
   padding: {
     top: css`

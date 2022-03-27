@@ -32,7 +32,7 @@ const Splash = ({ data }) => {
   const { frontmatter, html } = data
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 469)
+    const timeout = setTimeout(() => setIsMounted(true), 938)
     return () => clearTimeout(timeout)
   }, [])
 
