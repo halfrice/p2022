@@ -2,20 +2,15 @@ import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-import { mixins, theme } from "@styles"
+import { Section, theme } from "@styles"
 
-const { flex } = mixins
 const { colors } = theme
 
-const StyledSplash = styled.div`
-  ${flex.center};
+const StyledSplash = styled(Section)`
   min-height: 100vh;
 `
 const StyledTransitionGroup = styled(TransitionGroup)`
-  width: 100%;
-  min-width: 16rem;
-  max-width: 64rem;
-  margin: 0 3rem;
+  text-align: center;
 `
 const StyledName = styled.h1`
   color: ${colors.lightRed};
