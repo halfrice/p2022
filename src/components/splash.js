@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-import { Section, theme } from "@styles"
+import { mixins, Section, theme } from "@styles"
 
+const { flex } = mixins
 const { colors } = theme
 
 const StyledSplash = styled(Section)`
-  min-height: 100vh;
+  ${flex.center};
 `
 const StyledTransitionGroup = styled(TransitionGroup)`
+  width: 100%;
   text-align: center;
 `
 const StyledName = styled.h1`
@@ -22,9 +24,7 @@ const StyledTitle = styled.h2`
 const StyledLocation = styled.h3`
   color: ${colors.green};
 `
-const StyledQuest = styled.div`
-  color: ${colors.light};
-`
+const StyledQuest = styled.div``
 
 const Splash = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false)

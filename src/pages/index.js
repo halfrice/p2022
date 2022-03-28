@@ -1,12 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import { Layout, Splash } from "@components"
+import { About, Layout, Splash } from "@components"
 
 const IndexPage = ({ data }) => {
   return (
     <Layout>
       <Splash data={data.splash.edges[0].node} />
+      <About data={data.about.edges[0].node} />
     </Layout>
   )
 }
@@ -28,6 +29,18 @@ export const indexPageQuery = graphql`
             name
             title
             location
+          }
+          html
+        }
+      }
+    }
+    about: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/about/" } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
           }
           html
         }

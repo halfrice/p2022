@@ -9,7 +9,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${colors.eigengrau};
+    background-color: ${colors.light};
+    color: ${colors.dark};
     font-weight: 400;
     min-height: 100vh;
   }
@@ -25,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
   h3,
   h4,
   h5 {
-    color: ${colors.lightRed};
+    color: ${colors.blue};
     font-weight: 600;
   }
 
