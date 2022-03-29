@@ -13,4 +13,8 @@ module.exports = {
       url: "/contact",
     },
   ],
+  footerLinks: [
+    { name: "Mission", url: "/mission" },
+    { name: "Credits", url: "/credits" },
+  ],
 }

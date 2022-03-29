@@ -31,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    color: inherit;
+    color: ${colors.darkBlue};
     cursor: pointer;
     display: inline-block;
     position: relative;
