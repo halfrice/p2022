@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { IconLogo } from "@components/icons"
 import { navLinks } from "@config"
 import { devices, mixins, theme } from "@styles"
 
@@ -25,6 +26,7 @@ const StyledNav = styled.nav`
   user-select: auto !important;
   overflow-y: hidden;
   transition: ${theme.transition};
+  z-index: 9999;
 `
 const StyledWrapper = styled.div`
   ${flex.start};
@@ -32,6 +34,20 @@ const StyledWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+`
+const StyledLogo = styled.div`
+  margin: 0.5rem;
+  padding: 0.5rem 0;
+  svg {
+    width: 18px;
+    height: 18px;
+    #n {
+      stroke: ${colors.light};
+    }
+    #circle {
+      stroke: ${colors.light};
+    }
+  }
 `
 const Links = styled.div`
   ${flex.center};
@@ -63,7 +79,9 @@ const Nav = () => {
           {isMounted && (
             <CSSTransition classNames="fade" timeout={3000}>
               <StyledLink key={"home"} to="/">
-                <StyledButton>HOME</StyledButton>
+                <StyledLogo>
+                  <IconLogo />
+                </StyledLogo>
               </StyledLink>
             </CSSTransition>
           )}

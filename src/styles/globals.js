@@ -43,6 +43,13 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  svg {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    pointer-events: none;
+  }
+
   .fade-enter {
     opacity: 0;
     transition: opacity 938ms ${theme.easing};
