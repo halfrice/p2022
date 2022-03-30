@@ -24,6 +24,24 @@ colors:
   darkPurple: "#9A2DFF"
   purple: "#EF1FFF"
 
+fonts:
+  lato: "Lato, -apple-system, system-ui, Open Sans, Roboto, Arial, sans-serif"
+
+fontSizes:
+  default: "16px"
+  xxxs: "0.73rem"
+  xxs: "0.8rem"
+  xs: "0.87rem"
+  sm: "0.94rem"
+  md: "1rem"
+  lg: "1.2rem"
+  xl: "1.4rem"
+  xxl: "1.6rem"
+  xxxl: "1.8rem"
+  h3: "2rem"
+  h2: "2.5rem"
+  h1: "3rem"
+
 easing: "cubic-bezier(0.37, 0, 0.63, 1)"
 transition: "all 469s cubic-bezier(0.37, 0, 0.63, 1)"
 

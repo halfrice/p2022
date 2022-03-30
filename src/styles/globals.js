@@ -1,7 +1,8 @@
 import { createGlobalStyle } from "styled-components"
 import theme from "./theme.yml"
+import { devices } from "@styles"
 
-const { colors } = theme
+const { colors, fonts, fontSizes } = theme
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -11,6 +12,9 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${colors.light};
     color: ${colors.dark};
+    font-family: ${fonts.lato};
+    font-size: ${fontSizes.default};
+    ${devices.tablet`font-size: ${fontSizes.sm};`};
     font-weight: 400;
     min-height: 100vh;
   }

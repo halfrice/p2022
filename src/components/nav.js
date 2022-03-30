@@ -19,8 +19,6 @@ const StyledNav = styled.nav`
   height: ${nav.height};
   ${devices.tablet`height: ${nav.heightMobile};`};
   background-color: ${colors.black};
-  font-family: monospace;
-  font-size: 12px;
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
