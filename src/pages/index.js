@@ -31,6 +31,11 @@ export const indexPageQuery = graphql`
             name
             title
             location
+            image {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH, quality: 75)
+              }
+            }
           }
           html
         }
