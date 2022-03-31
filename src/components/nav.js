@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { Link } from "gatsby"
 import styled from "styled-components"
@@ -6,6 +6,7 @@ import { Anchor } from "@components"
 import { IconLogo } from "@components/icons"
 import { navLinks } from "@config"
 import { devices, mixins, theme } from "@styles"
+import { useEventListener } from "@utils"
 
 const { colors, fontSizes, nav } = theme
 const { flex } = mixins
@@ -97,11 +98,20 @@ const Nav = () => {
     }
   }
 
+  const handleResize = useCallback(() => {
+    setDevice()
+    if (!isDeviceMobile && isAnchorOpen) {
+      toggleAnchor()
+    }
+  }, [isDeviceMobile])
+
   useEffect(() => {
     setDevice()
     const timeout = setTimeout(() => setIsMounted(true), 0)
     return () => clearTimeout(timeout)
   }, [])
+
+  useEventListener("resize", handleResize)
 
   return (
     <StyledNav>
