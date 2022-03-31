@@ -1,4 +1,5 @@
+import scrollReveal from "./scrollReveal"
 import throttle from "./throttle"
 import useEventListener from "./useEventListener"
 
-export { throttle, useEventListener }
+export { scrollReveal, throttle, useEventListener }
