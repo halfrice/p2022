@@ -1,3 +1,4 @@
+import throttle from "./throttle"
 import useEventListener from "./useEventListener"
 
-export { useEventListener }
+export { throttle, useEventListener }

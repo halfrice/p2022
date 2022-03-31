@@ -6,7 +6,7 @@ import { Anchor } from "@components"
 import { IconLogo } from "@components/icons"
 import { navLinks } from "@config"
 import { devices, mixins, theme } from "@styles"
-import { useEventListener } from "@utils"
+import { throttle, useEventListener } from "@utils"
 
 const { colors, fontSizes, nav } = theme
 const { flex } = mixins
@@ -98,12 +98,15 @@ const Nav = () => {
     }
   }
 
-  const handleResize = useCallback(() => {
-    setDevice()
-    if (!isDeviceMobile && isAnchorOpen) {
-      toggleAnchor()
-    }
-  }, [isDeviceMobile])
+  const handleResize = useCallback(
+    throttle(() => {
+      setDevice()
+      if (!isDeviceMobile && isAnchorOpen) {
+        toggleAnchor()
+      }
+    }, 100),
+    [isDeviceMobile]
+  )
 
   useEffect(() => {
     setDevice()
