@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { Anchor } from "@components"
 import { IconLogo } from "@components/icons"
 import { navLinks } from "@config"
 import { devices, mixins, theme } from "@styles"
 
-const { colors, nav } = theme
+const { colors, fontSizes, nav } = theme
 const { flex } = mixins
 
 const StyledNav = styled.nav`
@@ -37,8 +38,8 @@ const StyledLogo = styled.div`
   margin: 0.5rem;
   padding: 0.5rem 0;
   svg {
-    width: 18px;
-    height: 18px;
+    width: ${fontSizes.md};
+    height: ${fontSizes.md};
     #n {
       stroke: ${colors.light};
     }
@@ -61,11 +62,43 @@ const StyledButton = styled.div`
   margin: 0.5rem;
   padding: 0.5rem 0;
 `
+const StyledAnchorLink = styled.div`
+  ${flex.center};
+  height: 100%;
+  margin: 0 0.5rem;
+  :hover {
+    cursor: pointer;
+  }
+`
+const StyledAnchorButton = styled.div`
+  ${flex.center};
+  margin: 0.5rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  text-transform: none;
+  overflow: visible;
+`
 
 const Nav = () => {
   const [isMounted, setIsMounted] = useState(false)
+  const [isAnchorOpen, setIsAnchorOpen] = useState(false)
+  const [isDeviceMobile, setIsDeviceMobile] = useState(false)
+
+  const toggleAnchor = () => {
+    setIsAnchorOpen(!isAnchorOpen)
+  }
+
+  const setDevice = () => {
+    if (typeof window === "undefined") return
+    if (window.innerWidth <= 830) {
+      setIsDeviceMobile(true)
+    } else {
+      setIsDeviceMobile(false)
+    }
+  }
 
   useEffect(() => {
+    setDevice()
     const timeout = setTimeout(() => setIsMounted(true), 0)
     return () => clearTimeout(timeout)
   }, [])
@@ -73,6 +106,20 @@ const Nav = () => {
   return (
     <StyledNav>
       <StyledWrapper>
+        {isDeviceMobile && (
+          <TransitionGroup component={null}>
+            {isMounted && (
+              <CSSTransition classNames="fade" timeout={3000}>
+                <StyledAnchorLink onClick={toggleAnchor}>
+                  <StyledAnchorButton>
+                    <Anchor isToggled={isAnchorOpen} />
+                  </StyledAnchorButton>
+                </StyledAnchorLink>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+        )}
+
         <TransitionGroup component={null}>
           {isMounted && (
             <CSSTransition classNames="fade" timeout={3000}>
@@ -85,22 +132,24 @@ const Nav = () => {
           )}
         </TransitionGroup>
 
-        <Links>
-          <TransitionGroup component={null}>
-            {isMounted &&
-              navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <CSSTransition key={i} classNames="fade" timeout={3000}>
-                  <StyledLink
-                    to={url}
-                    style={{ transitionDelay: `${(i + 1) * 59}ms` }}
-                  >
-                    <StyledButton>{name.toUpperCase()}</StyledButton>
-                  </StyledLink>
-                </CSSTransition>
-              ))}
-          </TransitionGroup>
-        </Links>
+        {!isDeviceMobile && (
+          <Links>
+            <TransitionGroup component={null}>
+              {isMounted &&
+                navLinks &&
+                navLinks.map(({ url, name }, i) => (
+                  <CSSTransition key={i} classNames="fade" timeout={3000}>
+                    <StyledLink
+                      to={url}
+                      style={{ transitionDelay: `${(i + 1) * 59}ms` }}
+                    >
+                      <StyledButton>{name.toUpperCase()}</StyledButton>
+                    </StyledLink>
+                  </CSSTransition>
+                ))}
+            </TransitionGroup>
+          </Links>
+        )}
       </StyledWrapper>
     </StyledNav>
   )
