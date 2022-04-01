@@ -2,7 +2,8 @@
 name: "Neel Pedersen"
 title: "Software Engineer"
 location: "San Jose, California"
-image: "./13p97w.png"
+background: "./13p97w.png"
+avatar: "./avatar.png"
 ---
 
 Disrupting digital media 👊

@@ -31,7 +31,12 @@ export const indexPageQuery = graphql`
             name
             title
             location
-            image {
+            background {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH, quality: 75)
+              }
+            }
+            avatar {
               childImageSharp {
                 gatsbyImageData(layout: FULL_WIDTH, quality: 75)
               }
