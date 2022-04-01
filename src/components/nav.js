@@ -20,13 +20,17 @@ const StyledNav = styled.nav`
   width: 100%;
   height: ${nav.height};
   ${devices.tablet`height: ${nav.heightMobile};`};
-  background-color: ${colors.black};
+  background-color: ${colors.black + "CC"};
+  font-size: ${fontSizes.xxxs};
+  letter-spacing: 0.03rem;
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
   overflow-y: hidden;
   transition: ${theme.transition};
   z-index: 9999;
+  backdrop-filter: blur(1.25rem) saturate(180%);
+  -webkit-backdrop-filter: blur(1.25rem) saturate(180%);
 `
 const StyledWrapper = styled.div`
   ${flex.start};
@@ -35,13 +39,7 @@ const StyledWrapper = styled.div`
   width: 100%;
   height: 100%;
   .active {
-    color: ${colors.green};
-    #n {
-      stroke: ${colors.green};
-    }
-    #circle {
-      stroke: ${colors.green};
-    }
+    background-color: ${colors.black + "88"};
   }
 `
 const StyledLogo = styled.div`
@@ -148,6 +146,7 @@ const Nav = () => {
               <StyledLink
                 activeClass="active"
                 duration={469}
+                offset={-44}
                 to={"splash"}
                 smooth={true}
                 spy={true}
@@ -176,7 +175,7 @@ const Nav = () => {
                       spy={true}
                       style={{ transitionDelay: `${(i + 1) * 59}ms` }}
                     >
-                      <StyledButton>{name.toUpperCase()}</StyledButton>
+                      <StyledButton>{name}</StyledButton>
                     </StyledLink>
                   </CSSTransition>
                 ))}
