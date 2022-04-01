@@ -29,7 +29,7 @@ const Apps = ({ data }) => {
   }, [])
 
   return (
-    <AppsContainer>
+    <AppsContainer id="apps">
       <div>
         <Title ref={revealTitle}>{frontmatter.title}</Title>
         <Content

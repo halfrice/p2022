@@ -95,7 +95,7 @@ const Splash = ({ data }) => {
   const items = [name, title, location, quest]
 
   return (
-    <StyledSplash>
+    <StyledSplash id="splash">
       <StyledImage image={image} alt="" />
       <StyledTransitionGroup>
         {isMounted &&

@@ -2,15 +2,15 @@ module.exports = {
   navLinks: [
     {
       name: "About",
-      url: "/about",
+      url: "about",
     },
     {
       name: "Apps",
-      url: "/apps",
+      url: "apps",
     },
     {
       name: "Contact",
-      url: "/contact",
+      url: "contact",
     },
   ],
   footerLinks: [

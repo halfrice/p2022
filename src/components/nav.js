@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-import { Link } from "gatsby"
+import { Link } from "react-scroll"
 import styled from "styled-components"
 import { Anchor } from "@components"
 import { IconLogo } from "@components/icons"
@@ -34,6 +34,15 @@ const StyledWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  .active {
+    color: ${colors.green};
+    #n {
+      stroke: ${colors.green};
+    }
+    #circle {
+      stroke: ${colors.green};
+    }
+  }
 `
 const StyledLogo = styled.div`
   margin: 0.5rem;
@@ -136,7 +145,13 @@ const Nav = () => {
         <TransitionGroup component={null}>
           {isMounted && (
             <CSSTransition classNames="fade" timeout={3000}>
-              <StyledLink key={"home"} to="/">
+              <StyledLink
+                activeClass="active"
+                duration={469}
+                to={"splash"}
+                smooth={true}
+                spy={true}
+              >
                 <StyledLogo>
                   <IconLogo />
                 </StyledLogo>
@@ -153,7 +168,12 @@ const Nav = () => {
                 navLinks.map(({ url, name }, i) => (
                   <CSSTransition key={i} classNames="fade" timeout={3000}>
                     <StyledLink
+                      activeClass="active"
+                      duration={469}
+                      offset={-44}
                       to={url}
+                      smooth={true}
+                      spy={true}
                       style={{ transitionDelay: `${(i + 1) * 59}ms` }}
                     >
                       <StyledButton>{name.toUpperCase()}</StyledButton>

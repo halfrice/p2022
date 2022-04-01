@@ -44,7 +44,7 @@ const About = ({ data }) => {
   }, [])
 
   return (
-    <AboutContainer>
+    <AboutContainer id="about">
       <div>
         <Title ref={revealTitle}>{frontmatter.title}</Title>
         <StyledImageWrapper ref={revealImage}>

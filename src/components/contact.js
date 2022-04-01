@@ -29,7 +29,7 @@ const Contact = ({ data }) => {
   }, [])
 
   return (
-    <ContactContainer>
+    <ContactContainer id="contact">
       <div>
         <Title ref={revealTitle}>{frontmatter.title}</Title>
         <Content
