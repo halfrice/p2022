@@ -1,37 +1,44 @@
 import React, { useEffect, useRef } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
-import { mixins, Section } from "@styles"
+import { mixins, Section, theme } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
-const { flex } = mixins
+const { colors } = theme
+const { flex, padding } = mixins
 
-const AboutContainer = styled(Section)`
+const StyledAbout = styled(Section)`
   ${flex.center};
+  margin-top: 0.75rem;
+  ${padding.sides};
+  background-color: ${colors.light};
   p {
     margin-top: 1rem;
   }
 `
+const StyledWrapper = styled.div`
+  max-width: 64rem;
+`
 const StyledImageWrapper = styled.div`
+  ${flex.center};
   margin: 0;
   padding: 0;
 `
 const StyledImage = styled(GatsbyImage)`
   width: 100%;
-  /* margin-bottom: 2rem; */
-  z-index: -1;
+  max-height: 22rem;
 `
-const Title = styled.h1`
+const StyledTitle = styled.h1`
+  color: ${colors.eigengrau};
   margin-top: 0;
 `
-const Content = styled.p`
+const StyledContent = styled.p`
   margin-top: 1rem;
 `
 
 const About = ({ data }) => {
   const { frontmatter, html } = data
-  const image = getImage(frontmatter.image)
 
   const revealTitle = useRef(null)
   const revealImage = useRef(null)
@@ -44,18 +51,18 @@ const About = ({ data }) => {
   }, [])
 
   return (
-    <AboutContainer id="about">
-      <div>
-        <Title ref={revealTitle}>{frontmatter.title}</Title>
+    <StyledAbout id="about">
+      <StyledWrapper>
+        <StyledTitle ref={revealTitle}>{frontmatter.title}</StyledTitle>
         <StyledImageWrapper ref={revealImage}>
-          <StyledImage image={image} alt="" />
+          <StyledImage image={getImage(frontmatter.image)} alt="" />
         </StyledImageWrapper>
-        <Content
+        <StyledContent
           ref={revealContent}
           dangerouslySetInnerHTML={{ __html: html }}
         />
-      </div>
-    </AboutContainer>
+      </StyledWrapper>
+    </StyledAbout>
   )
 }
 

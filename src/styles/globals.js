@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${colors.light};
+    background-color: ${colors.white};
     color: ${colors.dark};
     font-family: ${fonts.lato};
     font-size: ${fontSizes.default};
@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
   h3,
   h4,
   h5 {
-    color: ${colors.blue};
+    color: ${colors.dark};
     font-weight: 600;
   }
 

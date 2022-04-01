@@ -21,12 +21,20 @@ const mixins = {
   },
   padding: {
     top: css`
-      padding-top: 6rem;
-      ${devices.phone`padding-top: 3rem;`};
+      padding-top: 2rem;
+      ${devices.phone`padding-top: 1rem;`};
     `,
     bottom: css`
-      padding-bottom: 6rem;
-      ${devices.phone`padding-bottom: 3rem;`};
+      padding-bottom: 2rem;
+      ${devices.phone`padding-bottom: 1rem;`};
+    `,
+    sides: css`
+      padding-left: 3rem;
+      ${devices.tablet`padding-left: 1.5rem;`};
+      ${devices.phone`padding-left: 1rem;`};
+      padding-right: 3rem;
+      ${devices.tablet`padding-right: 1.5rem;`};
+      ${devices.phone`padding-right: 1rem;`};
     `,
   },
 }
