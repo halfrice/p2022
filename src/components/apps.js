@@ -1,21 +1,30 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import { mixins, Section } from "@styles"
+import { mixins, Section, theme } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
-const { flex } = mixins
+const { colors } = theme
+const { flex, padding } = mixins
 
-const AppsContainer = styled(Section)`
+const StyledApps = styled(Section)`
   ${flex.center};
+  margin-top: 0.75rem;
+  ${padding.sides};
+  background-color: ${colors.light};
   p {
     margin-top: 1rem;
   }
 `
-const Title = styled.h1`
+const StyledWrapper = styled.div`
+  max-width: 64rem;
+`
+const StyledTitle = styled.h1`
   margin-top: 0;
 `
-const Content = styled.p``
+const StyledContent = styled.p`
+  margin-top: 1rem;
+`
 
 const Apps = ({ data }) => {
   const { frontmatter, html } = data
@@ -29,15 +38,15 @@ const Apps = ({ data }) => {
   }, [])
 
   return (
-    <AppsContainer id="apps">
-      <div>
-        <Title ref={revealTitle}>{frontmatter.title}</Title>
-        <Content
+    <StyledApps id="apps">
+      <StyledWrapper>
+        <StyledTitle ref={revealTitle}>{frontmatter.title}</StyledTitle>
+        <StyledContent
           ref={revealContent}
           dangerouslySetInnerHTML={{ __html: html }}
         />
-      </div>
-    </AppsContainer>
+      </StyledWrapper>
+    </StyledApps>
   )
 }
 
