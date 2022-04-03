@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { mixins, Section, theme } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
-const { colors } = theme
 const { flex, padding } = mixins
+const { colors } = theme
 
 const StyledAbout = styled(Section)`
   ${flex.center};
@@ -37,8 +38,31 @@ const StyledContent = styled.p`
   margin-top: 1rem;
 `
 
-const About = ({ data }) => {
-  const { frontmatter, html } = data
+const About = () => {
+  const data = useStaticQuery(graphql`
+    {
+      about: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/about/" } }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              title
+              image {
+                childImageSharp {
+                  gatsbyImageData(layout: FULL_WIDTH, quality: 75)
+                }
+              }
+            }
+            html
+          }
+        }
+      }
+    }
+  `)
+
+  const { frontmatter, html } = data.about.edges[0].node
+  const image = getImage(frontmatter.image)
 
   const revealTitle = useRef(null)
   const revealImage = useRef(null)
@@ -55,7 +79,7 @@ const About = ({ data }) => {
       <StyledWrapper>
         <StyledTitle ref={revealTitle}>{frontmatter.title}</StyledTitle>
         <StyledImageWrapper ref={revealImage}>
-          <StyledImage image={getImage(frontmatter.image)} alt="" />
+          <StyledImage image={image} alt="" />
         </StyledImageWrapper>
         <StyledContent
           ref={revealContent}

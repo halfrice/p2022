@@ -1,10 +1,10 @@
-import About from "./about"
-import Anchor from "./anchor"
-import Apps from "./apps"
-import Contact from "./contact"
-import Footer from "./footer"
-import Layout from "./layout"
-import Nav from "./nav"
-import Splash from "./splash"
+export { default as Anchor } from "./anchor"
+export { default as Footer } from "./footer"
+export { default as Layout } from "./layout"
+export { default as Nav } from "./nav"
 
-export { About, Anchor, Apps, Contact, Footer, Layout, Nav, Splash }
+// Sections
+export { default as About } from "./sections/about"
+export { default as Apps } from "./sections/apps"
+export { default as Contact } from "./sections/contact"
+export { default as Splash } from "./sections/splash"

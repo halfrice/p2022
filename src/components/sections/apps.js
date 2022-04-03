@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import { mixins, Section, theme } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
-const { colors } = theme
 const { flex, padding } = mixins
+const { colors } = theme
 
-const StyledContact = styled(Section)`
+const StyledApps = styled(Section)`
   ${flex.center};
-  margin: 0.75rem 0;
+  margin-top: 0.75rem;
   ${padding.sides};
   background-color: ${colors.light};
   p {
@@ -23,11 +24,28 @@ const StyledTitle = styled.h1`
   margin-top: 0;
 `
 const StyledContent = styled.p`
-  margin: 1rem;
+  margin-top: 1rem;
 `
 
-const Contact = ({ data }) => {
-  const { frontmatter, html } = data
+const Apps = () => {
+  const data = useStaticQuery(graphql`
+    {
+      apps: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/apps/" } }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              title
+            }
+            html
+          }
+        }
+      }
+    }
+  `)
+
+  const { frontmatter, html } = data.apps.edges[0].node
 
   const revealTitle = useRef(null)
   const revealContent = useRef(null)
@@ -38,7 +56,7 @@ const Contact = ({ data }) => {
   }, [])
 
   return (
-    <StyledContact id="contact">
+    <StyledApps id="apps">
       <StyledWrapper>
         <StyledTitle ref={revealTitle}>{frontmatter.title}</StyledTitle>
         <StyledContent
@@ -46,8 +64,8 @@ const Contact = ({ data }) => {
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </StyledWrapper>
-    </StyledContact>
+    </StyledApps>
   )
 }
 
-export default Contact
+export default Apps

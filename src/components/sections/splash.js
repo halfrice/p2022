@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import PropTypes from "prop-types"
 import styled from "styled-components"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { devices, mixins, Section, theme } from "@styles"
@@ -84,10 +84,41 @@ const StyledQuest = styled.div`
   }
 `
 
-const Splash = ({ data }) => {
-  const [isMounted, setIsMounted] = useState(false)
+const Splash = () => {
+  const data = useStaticQuery(graphql`
+    {
+      splash: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/splash/" } }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              name
+              title
+              location
+              background {
+                childImageSharp {
+                  gatsbyImageData(layout: FULL_WIDTH, quality: 75)
+                }
+              }
+              avatar {
+                childImageSharp {
+                  gatsbyImageData(layout: FULL_WIDTH, quality: 75)
+                }
+              }
+            }
+            html
+          }
+        }
+      }
+    }
+  `)
 
-  const { frontmatter, html } = data
+  const { frontmatter, html } = data.splash.edges[0].node
+  const avatarImage = getImage(frontmatter.avatar)
+  const backgroundImage = getImage(frontmatter.background)
+
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     const timeout = setTimeout(() => setIsMounted(true), 938)
@@ -97,7 +128,7 @@ const Splash = ({ data }) => {
   const avatar = () => (
     <StyledAvatarWrapper>
       <StyledAvatar
-        image={getImage(frontmatter.avatar)}
+        image={avatarImage}
         alt="Avatar"
         style={{ transitionDelay: "0ms" }}
       />
@@ -124,11 +155,12 @@ const Splash = ({ data }) => {
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )
+
   const items = [avatar, name, title, location, quest]
 
   return (
     <StyledSplash id="splash">
-      <StyledBackground image={getImage(frontmatter.background)} alt="" />
+      <StyledBackground image={backgroundImage} alt="" />
       <StyledTransitionGroup>
         {isMounted &&
           items.map((item, i) => (
@@ -139,10 +171,6 @@ const Splash = ({ data }) => {
       </StyledTransitionGroup>
     </StyledSplash>
   )
-}
-
-Splash.propTypes = {
-  data: PropTypes.object.isRequired,
 }
 
 export default Splash
