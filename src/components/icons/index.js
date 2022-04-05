@@ -1,3 +1,8 @@
-import IconLogo from "./logo"
-
-export { IconLogo }
+export { default as IconCodepen } from "./codepen"
+export { default as IconGithub } from "./github"
+export { default as IconGitlab } from "./gitlab"
+export { default as IconGoogle } from "./google"
+export { default as Icon } from "./icon"
+export { default as IconLinkedin } from "./linkedin"
+export { default as IconLogo } from "./logo"
+export { default as IconTwitter } from "./twitter"

@@ -17,6 +17,44 @@ module.exports = {
     { name: "Mission", url: "/mission" },
     { name: "Credits", url: "/credits" },
   ],
+  socialMedia: [
+    {
+      name: "Google",
+      url: "mailto:neelpedersen@gmail.com",
+      color: "#4285f4",
+      username: "neelpedersen@gmail.com",
+    },
+    {
+      name: "Twitter",
+      url: "https://twitter.com/neelpedersen",
+      color: "#1da1f2",
+      username: "@neelpedersen",
+    },
+    {
+      name: "Linkedin",
+      url: "https://linkedin.com/neelpedersen",
+      color: "#405de6",
+      username: "@neelpedersen",
+    },
+    {
+      name: "Gitlab",
+      url: "https://gitlab.com/halfrice",
+      color: "#266DFC",
+      username: "gitlab.com/halfrice",
+    },
+    {
+      name: "Github",
+      url: "https://github.com/halfrice",
+      color: "#4078c0",
+      username: "github.com/halfrice",
+    },
+    {
+      name: "Codepen",
+      url: "https://codepen.io/halfrice",
+      color: "#0ebeff",
+      username: "codepen.io/halfrice",
+    },
+  ],
   scrollRevealConfig: (delay = 200) => ({
     delay,
     distance: "0px",
