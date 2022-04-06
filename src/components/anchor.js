@@ -9,6 +9,7 @@ const StyledAnchor = styled.div`
   width: ${anchor.width};
   height: ${anchor.width};
   background-color: transparent;
+  z-index: 9999;
 `
 const StyledBars = styled.div`
   position: absolute;

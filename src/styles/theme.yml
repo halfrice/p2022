@@ -43,7 +43,7 @@ fontSizes:
   h1: "3rem"
 
 easing: "cubic-bezier(0.37, 0, 0.63, 1)"
-transition: "all 469s cubic-bezier(0.37, 0, 0.63, 1)"
+transition: "all 469ms cubic-bezier(0.37, 0, 0.63, 1)"
 
 nav:
   height: "2.75rem"

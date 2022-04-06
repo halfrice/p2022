@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { Link } from "react-scroll"
 import styled from "styled-components"
-import { Anchor } from "@components"
+import { Anchor, Menu } from "@components"
 import { IconLogo } from "@components/icons"
 import { navLinks } from "@config"
 import { devices, mixins, theme } from "@styles"
@@ -12,7 +11,6 @@ const { colors, fontSizes, nav } = theme
 const { flex } = mixins
 
 const StyledNav = styled.nav`
-  ${flex.center};
   position: fixed;
   top: 0;
   left: 0;
@@ -26,74 +24,73 @@ const StyledNav = styled.nav`
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
-  overflow-y: hidden;
   transition: ${theme.transition};
   z-index: 9999;
   backdrop-filter: blur(1.25rem) saturate(180%);
   -webkit-backdrop-filter: blur(1.25rem) saturate(180%);
-`
-const StyledWrapper = styled.div`
-  ${flex.start};
-  ${devices.tablet`${flex.between};`};
-  position: relative;
-  width: 100%;
-  height: 100%;
-  .active {
-    background-color: ${colors.black + "88"};
+
+  .nav-content {
+    ${flex.start};
+    ${devices.tablet`${flex.between};`};
+    width: 100%;
+    height: 100%;
   }
 `
-const StyledLogo = styled.div`
-  margin: 0.5rem;
-  padding: 0.5rem 0;
-  svg {
-    width: ${fontSizes.md};
-    height: ${fontSizes.md};
-    #n {
-      stroke: ${colors.light};
-    }
-    #circle {
-      stroke: ${colors.light};
-    }
-  }
-`
-const Links = styled.div`
+
+const StyledLinks = styled.div`
   ${flex.center};
   height: 100%;
 `
+
 const StyledLink = styled(Link)`
   ${flex.center};
   height: 100%;
   margin: 0 0.5rem;
   color: ${colors.light};
+
+  span {
+    margin: 0.5rem;
+    padding: 0.5rem 0;
+
+    svg {
+      width: ${fontSizes.lg};
+      height: ${fontSizes.lg};
+
+      #n {
+        stroke: ${colors.light};
+      }
+
+      #circle {
+        stroke: ${colors.light};
+      }
+    }
+  }
 `
-const StyledButton = styled.div`
-  margin: 0.5rem;
-  padding: 0.5rem 0;
-`
+
 const StyledAnchorLink = styled.div`
   ${flex.center};
   height: 100%;
   margin: 0 0.5rem;
+
   :hover {
     cursor: pointer;
   }
-`
-const StyledAnchorButton = styled.div`
-  ${flex.center};
-  margin: 0.5rem;
-  padding: 0.5rem 0;
-  cursor: pointer;
-  text-transform: none;
-  overflow: visible;
+
+  span {
+    margin: 0.5rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    text-transform: none;
+    overflow: visible;
+  }
 `
 
 const Nav = () => {
-  const [isMounted, setIsMounted] = useState(false)
-  const [isAnchorOpen, setIsAnchorOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDeviceMobile, setIsDeviceMobile] = useState(false)
 
-  const toggleAnchor = () => {
-    setIsAnchorOpen(!isAnchorOpen)
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
   }
 
   const setDevice = () => {
@@ -108,8 +105,8 @@ const Nav = () => {
   const handleResize = useCallback(
     throttle(() => {
       setDevice()
-      if (!isDeviceMobile && isAnchorOpen) {
-        toggleAnchor()
+      if (!isDeviceMobile && isMenuOpen) {
+        toggleMenu()
       }
     }, 100),
     [isDeviceMobile]
@@ -117,72 +114,55 @@ const Nav = () => {
 
   useEffect(() => {
     setDevice()
-    const timeout = setTimeout(() => setIsMounted(true), 0)
-    return () => clearTimeout(timeout)
   }, [])
 
   useEventListener("resize", handleResize)
 
   return (
     <StyledNav>
-      <StyledWrapper>
+      <div className="nav-content">
         {isDeviceMobile && (
-          <TransitionGroup component={null}>
-            {isMounted && (
-              <CSSTransition classNames="fade" timeout={3000}>
-                <StyledAnchorLink onClick={toggleAnchor}>
-                  <StyledAnchorButton>
-                    <Anchor isToggled={isAnchorOpen} />
-                  </StyledAnchorButton>
-                </StyledAnchorLink>
-              </CSSTransition>
-            )}
-          </TransitionGroup>
+          <StyledAnchorLink onClick={toggleMenu}>
+            <span>
+              <Anchor isToggled={isMenuOpen} />
+            </span>
+          </StyledAnchorLink>
         )}
 
-        <TransitionGroup component={null}>
-          {isMounted && (
-            <CSSTransition classNames="fade" timeout={3000}>
-              <StyledLink
-                activeClass="active"
-                duration={469}
-                offset={-44}
-                to={"splash"}
-                smooth={true}
-                spy={true}
-              >
-                <StyledLogo>
-                  <IconLogo />
-                </StyledLogo>
-              </StyledLink>
-            </CSSTransition>
-          )}
-        </TransitionGroup>
+        {isDeviceMobile && (
+          <Menu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        )}
+
+        <StyledLink
+          duration={469}
+          offset={-44}
+          to={"splash"}
+          smooth={true}
+          spy={true}
+        >
+          <span>
+            <IconLogo />
+          </span>
+        </StyledLink>
 
         {!isDeviceMobile && (
-          <Links>
-            <TransitionGroup component={null}>
-              {isMounted &&
-                navLinks &&
-                navLinks.map(({ url, name }, i) => (
-                  <CSSTransition key={i} classNames="fade" timeout={3000}>
-                    <StyledLink
-                      activeClass="active"
-                      duration={469}
-                      offset={-44}
-                      to={url}
-                      smooth={true}
-                      spy={true}
-                      style={{ transitionDelay: `${(i + 1) * 59}ms` }}
-                    >
-                      <StyledButton>{name}</StyledButton>
-                    </StyledLink>
-                  </CSSTransition>
-                ))}
-            </TransitionGroup>
-          </Links>
+          <StyledLinks>
+            {navLinks &&
+              navLinks.map(({ url, name }, i) => (
+                <StyledLink
+                  duration={469}
+                  key={i}
+                  offset={-48}
+                  to={url}
+                  smooth={true}
+                  spy={true}
+                >
+                  <span>{name}</span>
+                </StyledLink>
+              ))}
+          </StyledLinks>
         )}
-      </StyledWrapper>
+      </div>
     </StyledNav>
   )
 }
