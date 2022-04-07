@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
+import { Icon } from "@components/icons"
 import { devices, mixins, Section, theme } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
 const { flex, padding } = mixins
-const { colors } = theme
+const { colors, fontSizes } = theme
 
 const StyledApps = styled(Section)`
   ${flex.center};
@@ -55,6 +56,11 @@ const StyledApp = styled.div`
   .app-image {
     max-height: 300px;
   }
+
+  svg {
+    width: 9rem;
+    height: 9rem;
+  }
 `
 
 const Apps = () => {
@@ -92,7 +98,7 @@ const Apps = () => {
     scrollReveal.reveal(revealTitle.current, scrollRevealConfig(234))
     scrollReveal.reveal(revealContent.current, scrollRevealConfig(293))
     revealApps.current.forEach((ref, i) =>
-      scrollReveal.reveal(ref, scrollRevealConfig((i + 2) * 117))
+      scrollReveal.reveal(ref, scrollRevealConfig((i + 2) * 59))
     )
   }, [])
 
@@ -133,8 +139,13 @@ const Apps = () => {
 
               return (
                 <StyledApp key={i} ref={(app) => (revealApps.current[i] = app)}>
-                  <h1>{frontmatter.title}</h1>
-                  <GatsbyImage className="app-image" image={image} alt="" />
+                  <h2>{frontmatter.title}</h2>
+                  {image ? (
+                    <GatsbyImage className="app-image" image={image} alt="" />
+                  ) : (
+                    <Icon name="Folder" />
+                  )}
+
                   <div dangerouslySetInnerHTML={{ __html: html }}></div>
                 </StyledApp>
               )

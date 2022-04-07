@@ -1,4 +1,5 @@
 export { default as IconCodepen } from "./codepen"
+export { default as IconFolder } from "./folder"
 export { default as IconGithub } from "./github"
 export { default as IconGitlab } from "./gitlab"
 export { default as IconGoogle } from "./google"
