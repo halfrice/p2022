@@ -14,6 +14,7 @@ const StyledAbout = styled(Section)`
   margin-top: 0.75rem;
   ${padding.sides};
   background-color: ${colors.light};
+
   p {
     margin-top: 1rem;
   }

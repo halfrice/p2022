@@ -1,4 +1,5 @@
 export { default as Anchor } from "./anchor"
+export { default as Download } from "./download"
 export { default as Footer } from "./footer"
 export { default as Layout } from "./layout"
 export { default as Menu } from "./menu"

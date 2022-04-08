@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
+import { Download } from "@components"
 import { Icon } from "@components/icons"
 import { devices, mixins, Section, theme } from "@styles"
 import { scrollReveal } from "@utils"
@@ -20,19 +21,24 @@ const StyledApps = styled(Section)`
 
   .apps-content {
     ${padding.sides};
-    max-width: 64rem;
-  }
+    max-width: 70rem;
+    margin-bottom: 2rem;
 
-  .apps-title {
-    margin-top: 0;
-  }
+    .apps-title {
+      margin-top: 0;
+    }
 
-  .apps-description {
-    margin-top: 1rem;
-  }
+    .apps-description {
+      margin-top: 1rem;
 
-  p {
-    margin-top: 1rem;
+      p {
+        margin-top: 1rem;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 `
 const StyledAppsGridWrapper = styled.div`
@@ -73,8 +79,13 @@ const Apps = () => {
         edges {
           node {
             frontmatter {
-              title
+              appleStore
               date
+              github
+              googlePlay
+              title
+              url
+              youtube
               image {
                 childImageSharp {
                   gatsbyImageData(layout: CONSTRAINED, quality: 75)
@@ -137,6 +148,17 @@ const Apps = () => {
               const { frontmatter, html } = node
               const image = getImage(frontmatter.image)
 
+              const { appleStore, github, googlePlay, url, youtube } =
+                frontmatter
+
+              const links = {
+                appleStore,
+                github,
+                googlePlay,
+                url,
+                youtube,
+              }
+
               return (
                 <StyledApp key={i} ref={(app) => (revealApps.current[i] = app)}>
                   <h2>{frontmatter.title}</h2>
@@ -146,7 +168,8 @@ const Apps = () => {
                     <Icon name="Folder" />
                   )}
 
-                  <div dangerouslySetInnerHTML={{ __html: html }}></div>
+                  <div dangerouslySetInnerHTML={{ __html: html }} />
+                  <Download links={links} />
                 </StyledApp>
               )
             })}
