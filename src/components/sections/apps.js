@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
-import { Download } from "@components"
+import { Download, Video } from "@components"
 import { Icon } from "@components/icons"
 import { devices, mixins, Section, theme } from "@styles"
 import { scrollReveal } from "@utils"
@@ -85,6 +85,7 @@ const Apps = () => {
               googlePlay
               title
               url
+              video
               youtube
               image {
                 childImageSharp {
@@ -148,8 +149,15 @@ const Apps = () => {
               const { frontmatter, html } = node
               const image = getImage(frontmatter.image)
 
-              const { appleStore, github, googlePlay, url, youtube } =
-                frontmatter
+              const {
+                appleStore,
+                github,
+                googlePlay,
+                title,
+                url,
+                video,
+                youtube,
+              } = frontmatter
 
               const links = {
                 appleStore,
@@ -162,7 +170,9 @@ const Apps = () => {
               return (
                 <StyledApp key={i} ref={(app) => (revealApps.current[i] = app)}>
                   <h2>{frontmatter.title}</h2>
-                  {image ? (
+                  {video ? (
+                    <Video url={video} title={title} />
+                  ) : image ? (
                     <GatsbyImage className="app-image" image={image} alt="" />
                   ) : (
                     <Icon name="Folder" />
