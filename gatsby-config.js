@@ -1,4 +1,11 @@
 module.exports = {
+  siteMetadata: {
+    title: "Neel Pedersen",
+    titleTemplate: "%s · Software Engineer",
+    description: "Software Engineer",
+    siteUrl: "https://neelpedersen.com",
+    image: "/og.png",
+  },
   plugins: [
     {
       resolve: "gatsby-source-filesystem",
@@ -7,6 +14,7 @@ module.exports = {
         path: `${__dirname}/src/content/`,
       },
     },
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
