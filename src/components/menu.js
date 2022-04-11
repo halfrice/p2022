@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Helmet } from "react-helmet"
 import { Link } from "react-scroll"
 import styled from "styled-components"
 import { navLinks } from "@config"
@@ -65,6 +66,10 @@ const Menu = ({ isMenuOpen, toggleMenu }) => {
 
   return (
     <StyledMenu isMenuOpen={isMenuOpen} onClick={handleMenuClick}>
+      <Helmet>
+        <body className={isMenuOpen ? "blur" : ""} />
+      </Helmet>
+
       <div className="menu-content">
         <StyledLinks>
           {navLinks &&

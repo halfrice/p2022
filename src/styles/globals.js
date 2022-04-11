@@ -17,6 +17,17 @@ const GlobalStyles = createGlobalStyle`
     ${devices.tablet`font-size: ${fontSizes.sm};`};
     font-weight: 400;
     min-height: 100vh;
+
+    &.blur {
+      overflow: hidden;
+
+      main > * {
+        filter: blur(3px) brightness(0.8);
+        transition: ${theme.transition};
+        pointer-events: none;
+        user-select: none;
+      }
+    }
   }
 
   *,
