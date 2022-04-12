@@ -8,6 +8,28 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "NeelPedersen",
+        short_name: "Neel",
+        start_url: "/",
+        background_color: "#F6F6F9",
+        theme_color: "#FFFFFF",
+        display: "minimal-ui",
+        lang: "en",
+        icon: "./src/images/logo.png",
+        cache_busting_mode: "none",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-offline",
+      options: {
+        workboxConfig: {
+          globPatterns: ["**/logo*"],
+        },
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "content",
