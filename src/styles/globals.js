@@ -1,20 +1,21 @@
 import { createGlobalStyle } from "styled-components"
-import theme from "./theme.yml"
 import { devices } from "@styles"
-
-const { colors, fonts, fontSizes } = theme
+import variables from "./variables"
 
 const GlobalStyles = createGlobalStyle`
+  ${variables};
+
   html {
     box-sizing: border-box;
+    font-size: 16px;
   }
 
   body {
-    background-color: ${colors.white};
-    color: ${colors.dark};
-    font-family: ${fonts.lato};
-    font-size: ${fontSizes.default};
-    ${devices.tablet`font-size: ${fontSizes.sm};`};
+    background-color: var(--white);
+    color: var(--dark);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    ${devices.tablet`font-size: var(--font-size-sm);`};
     font-weight: 400;
     min-height: 100vh;
 
@@ -23,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
 
       main > * {
         filter: blur(3px) brightness(0.8);
-        transition: ${theme.transition};
+        transition: var(--transition);
         pointer-events: none;
         user-select: none;
       }
@@ -41,12 +42,12 @@ const GlobalStyles = createGlobalStyle`
   h3,
   h4,
   h5 {
-    color: ${colors.dark};
+    color: var(--dark);
     font-weight: 600;
   }
 
   a {
-    color: ${colors.darkBlue};
+    color: var(--dark-blue);
     cursor: pointer;
     display: inline-block;
     position: relative;
@@ -67,11 +68,11 @@ const GlobalStyles = createGlobalStyle`
 
   .fade-enter {
     opacity: 0;
-    transition: opacity 938ms ${theme.easing};
+    transition: opacity 469ms var(--easing);
   }
   .fade-enter-active {
     opacity: 1;
-    transition: opacity 938ms ${theme.easing};
+    transition: opacity 469ms var(--easing);
   }
 `
 export default GlobalStyles
