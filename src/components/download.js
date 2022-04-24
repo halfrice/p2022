@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { mixins, theme } from "@styles"
+import { mixins } from "@styles"
 import {
   IconApple,
   IconGithub,
@@ -11,7 +11,6 @@ import {
 } from "@components/icons"
 
 const { flex } = mixins
-const { colors, fontSizes } = theme
 
 const StyledDownload = styled.div`
   ${flex.start};
@@ -32,8 +31,8 @@ const Link = styled.a`
   }
 
   svg {
-    width: ${fontSizes.xxl} !important;
-    height: ${fontSizes.xxl} !important;
+    width: var(--font-size-xxl) !important;
+    height: var(--font-size-xxl) !important;
   }
 `
 
@@ -48,7 +47,7 @@ const Download = ({ links }) => {
           target="_blank"
           rel="nofollow noopener noreferrer"
           aria-label="Apple Store Link"
-          style={{ fill: colors.darkerSlate }}
+          style={{ fill: "var(--dark-gray)" }}
         >
           <IconApple />
         </Link>
@@ -94,7 +93,7 @@ const Download = ({ links }) => {
           target="_blank"
           rel="nofollow noopener noreferrer"
           aria-label="Link"
-          style={{ fill: colors.blue }}
+          style={{ fill: "var(--blue)" }}
         >
           <IconLink />
         </Link>

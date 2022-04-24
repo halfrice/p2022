@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 import { Icon } from "@components/icons"
-import { devices, mixins, theme } from "@styles"
+import { devices, mixins } from "@styles"
 import { socialMedia } from "@config"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
-const { colors } = theme
 const { flex } = mixins
 
 const StyledSocial = styled.div`
@@ -32,7 +31,7 @@ const StyledSocialGrid = styled.div`
     }
 
     svg {
-      fill: ${colors.darkBlue};
+      fill: var(--dark-blue);
       width: 2rem;
       ${devices.tablet`width: 1.75rem;`};
       height: 2rem;
@@ -45,7 +44,7 @@ const StyledSocialUsername = styled.div`
   ${flex.start};
   padding: 0.5rem;
   margin-left: 0.5rem;
-  color: ${(props) => (props.color ? props.color : colors.darkBlue)};
+  color: ${(props) => (props.color ? props.color : "var(--dark-blue)")};
 `
 
 const Social = () => {

@@ -4,10 +4,9 @@ import styled from "styled-components"
 import { Anchor, Menu } from "@components"
 import { IconLogo } from "@components/icons"
 import { navLinks } from "@config"
-import { devices, mixins, theme } from "@styles"
+import { devices, mixins } from "@styles"
 import { throttle, useEventListener } from "@utils"
 
-const { colors, fontSizes, nav } = theme
 const { flex } = mixins
 
 const StyledNav = styled.nav`
@@ -16,18 +15,18 @@ const StyledNav = styled.nav`
   left: 0;
   margin: 0 auto;
   width: 100%;
-  height: ${nav.height};
-  ${devices.tablet`height: ${nav.heightMobile};`};
-  background-color: ${colors.black + "CC"};
-  font-size: ${fontSizes.xxxs};
+  height: var(--nav-height);
+  ${devices.tablet`height: var(--nav-height-mobile)`};
+  background-color: #000000cc;
+  font-size: var(--font-size-xxs);
   letter-spacing: 0.03rem;
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
-  transition: ${theme.transition};
-  z-index: 9999;
+  transition: var(--transition);
   backdrop-filter: blur(1.25rem) saturate(180%);
   -webkit-backdrop-filter: blur(1.25rem) saturate(180%);
+  z-index: 9999;
 
   .nav-content {
     ${flex.start};
@@ -46,22 +45,22 @@ const StyledLink = styled(Link)`
   ${flex.center};
   height: 100%;
   margin: 0 0.5rem;
-  color: ${colors.light};
+  color: var(--light);
 
   span {
     margin: 0.5rem;
     padding: 0.5rem 0;
 
     svg {
-      width: ${fontSizes.lg};
-      height: ${fontSizes.lg};
+      width: var(--font-size-lg);
+      height: var(--font-size-lg);
 
       #n {
-        stroke: ${colors.light};
+        stroke: var(--light);
       }
 
       #circle {
-        stroke: ${colors.light};
+        stroke: var(--light);
       }
     }
   }

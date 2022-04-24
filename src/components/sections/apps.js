@@ -4,23 +4,23 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { Download, Video } from "@components"
 import { Icon } from "@components/icons"
-import { devices, mixins, Section, theme } from "@styles"
+import { devices, mixins } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
 const { flex, padding } = mixins
-const { colors, fontSizes } = theme
 
-const StyledApps = styled(Section)`
+const StyledAppsSection = styled.section`
   ${flex.center};
   flex-direction: column;
   margin-top: 0.75rem;
   margin-bottom: -0.75rem;
   padding-bottom: 0;
-  background-color: ${colors.light};
+  background-color: var(--lighter);
 
   .apps-content {
-    ${padding.sides};
+    ${padding.section};
+    padding-bottom: 0;
     max-width: 70rem;
     margin-bottom: 2rem;
 
@@ -40,27 +40,30 @@ const StyledApps = styled(Section)`
       }
     }
   }
+
+  .apps-grid-wrapper {
+    padding: 0.75rem;
+    ${devices.phone`padding: 0.75rem 0;`};
+    background-color: var(--white);
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    ${devices.tablet`grid-template-columns: repeat(2, 1fr);`};
+    ${devices.phone`grid-template-columns: repeat(1, 1fr);`};
+    grid-gap: 0.75rem;
+    ${devices.phone`grid-gap: 0.75 0rem;`};
+  }
 `
-const StyledAppsGridWrapper = styled.div`
-  padding: 0.75rem;
-  ${devices.phone`padding: 0.75rem 0;`};
-  background-color: ${colors.white};
-`
-const StyledAppsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  ${devices.tablet`grid-template-columns: repeat(2, 1fr);`};
-  ${devices.phone`grid-template-columns: repeat(1, 1fr);`};
-  grid-gap: 0.75rem;
-  ${devices.phone`grid-gap: 0.75 0rem;`};
-`
+
 const StyledApp = styled.div`
   width: 100%;
   padding: 0.75rem;
-  background-color: ${colors.light};
+  background-color: var(--lighter);
 
   .app-image {
-    max-height: 300px;
+    max-height: 24rem;
   }
 
   svg {
@@ -89,7 +92,7 @@ const Apps = () => {
               youtube
               image {
                 childImageSharp {
-                  gatsbyImageData(layout: CONSTRAINED, quality: 75)
+                  gatsbyImageData(layout: FULL_WIDTH, quality: 75)
                 }
               }
             }
@@ -115,7 +118,7 @@ const Apps = () => {
   }, [])
 
   return (
-    <StyledApps id="apps">
+    <StyledAppsSection id="apps">
       <div className="apps-content">
         <h1 className="apps-title" ref={revealTitle}>
           Apps
@@ -142,8 +145,8 @@ const Apps = () => {
           </p>
         </div>
       </div>
-      <StyledAppsGridWrapper>
-        <StyledAppsGrid>
+      <div className="apps-grid-wrapper">
+        <div className="apps-grid">
           {apps &&
             apps.map(({ node }, i) => {
               const { frontmatter, html } = node
@@ -183,9 +186,9 @@ const Apps = () => {
                 </StyledApp>
               )
             })}
-        </StyledAppsGrid>
-      </StyledAppsGridWrapper>
-    </StyledApps>
+        </div>
+      </div>
+    </StyledAppsSection>
   )
 }
 

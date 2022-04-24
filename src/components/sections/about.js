@@ -2,41 +2,51 @@ import React, { useEffect, useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
-import { mixins, Section, theme } from "@styles"
+import { mixins } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
 const { flex, padding } = mixins
-const { colors } = theme
 
-const StyledAbout = styled(Section)`
+const StyledAbout = styled.section`
   ${flex.center};
   margin-top: 0.75rem;
-  ${padding.sides};
-  background-color: ${colors.light};
+  ${padding.section};
+  background-color: var(--lighter);
 
   p {
     margin-top: 1rem;
   }
 `
+
 const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   max-width: 64rem;
 `
+
 const StyledImageWrapper = styled.div`
   ${flex.center};
   margin: 0;
   padding: 0;
 `
+
 const StyledImage = styled(GatsbyImage)`
   width: 100%;
   max-height: 22rem;
 `
+
 const StyledTitle = styled.h1`
-  color: ${colors.eigengrau};
   margin-top: 0;
 `
-const StyledContent = styled.p`
-  margin-top: 1rem;
+
+const StyledContent = styled.div`
+  margin: 1rem 0 0 0;
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
 `
 
 const About = () => {

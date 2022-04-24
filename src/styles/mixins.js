@@ -36,6 +36,13 @@ const mixins = {
       ${devices.tablet`padding-right: 1.5rem;`};
       ${devices.phone`padding-right: 1rem;`};
     `,
+    section: css`
+      padding: 2rem 3rem;
+
+      @media (max-width: 600px) {
+        padding: 1rem 1rem;
+      }
+    `,
   },
 }
 

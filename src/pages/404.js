@@ -2,18 +2,15 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { Layout } from "@components"
-import { theme } from "@styles"
-
-const { colors } = theme
 
 const Title = styled.h1`
-  color: ${colors.red};
+  color: var(--red);
 `
 const Description = styled.h3`
-  color: ${colors.light};
+  color: var(--light);
 `
 const HomeLink = styled(Link)`
-  color: ${colors.lightGreen};
+  color: var(--light-green);
   text-decoration: underline;
 `
 

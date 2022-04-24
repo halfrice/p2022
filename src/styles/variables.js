@@ -10,7 +10,7 @@ const variables = css`
     --light-gray: #606067;
     --lighter-gray: #f0f0f7;
     --light: #f6f6f9;
-    --lighter: #fafafd;
+    --lighter: #fbfbfe;
     --white: #ffffff;
     --red: #ff0064;
     --light-red: #ff2768;

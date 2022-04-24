@@ -2,18 +2,17 @@ import React, { useEffect, useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import { Social } from "@components"
-import { mixins, Section, theme } from "@styles"
+import { mixins } from "@styles"
 import { scrollReveal } from "@utils"
 import { scrollRevealConfig } from "@config"
 
 const { flex, padding } = mixins
-const { colors } = theme
 
-const StyledContact = styled(Section)`
+const StyledContact = styled.section`
   ${flex.center};
   margin: 0.75rem 0;
-  ${padding.sides};
-  background-color: ${colors.light};
+  ${padding.section};
+  background-color: var(--lighter);
 
   .contact-content {
     max-width: 64rem;
@@ -23,8 +22,8 @@ const StyledContact = styled(Section)`
     }
 
     .contact-html {
-      p {
-        margin-top: 1rem;
+      p:last-of-type {
+        margin: 0;
       }
     }
   }

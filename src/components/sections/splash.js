@@ -3,22 +3,25 @@ import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-import { devices, mixins, Section, theme } from "@styles"
+import { devices, mixins } from "@styles"
 
 const { flex } = mixins
-const { colors, fontSizes } = theme
 
-const StyledSplash = styled(Section)`
+const StyledSplash = styled.section`
   ${flex.center};
-  height: 44rem;
-  max-height: 44rem;
+  ${mixins.padding.section};
+  height: 100vh;
+  min-height: 45rem;
+  max-height: 75rem;
   position: relative;
   overflow: hidden;
 `
+
 const StyledTransitionGroup = styled(TransitionGroup)`
   width: 100%;
   text-align: center;
 `
+
 const StyledBackground = styled(GatsbyImage)`
   width: 100%;
   position: absolute;
@@ -29,9 +32,11 @@ const StyledBackground = styled(GatsbyImage)`
   transform: translate(-50%, -50%);
   z-index: -9999;
 `
+
 const StyledAvatarWrapper = styled.div`
   ${flex.center};
 `
+
 const StyledAvatar = styled(GatsbyImage)`
   margin: 0 0 0.5rem 0;
   padding: 0;
@@ -46,38 +51,43 @@ const StyledAvatar = styled(GatsbyImage)`
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
 `
+
 const StyledName = styled.h1`
   margin: 0;
   padding: 0;
-  color: ${colors.light};
-  font-size: ${fontSizes.h1};
-  ${devices.tablet`font-size: ${fontSizes.h2};`};
-  ${devices.phone`font-size: ${fontSizes.h3};`};
+  color: var(--light);
+  font-size: var(--font-size-h1);
+  ${devices.tablet`font-size: var(--font-size-h2)`};
+  ${devices.phone`font-size: var(--font-size-h3)`};
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 `
+
 const StyledTitle = styled.h2`
   margin: 0 0 0.25rem;
   padding: 0;
-  color: ${colors.dark};
-  font-size: ${fontSizes.h3};
-  ${devices.tablet`font-size: ${fontSizes.xxxl};`};
-  ${devices.phone`font-size: ${fontSizes.xxl};`};
+  color: var(--dark);
+  font-size: var(--font-size-h3);
+  ${devices.tablet`font-size: 1.75rem`};
+  ${devices.phone`font-size: 1.5rem`};
   text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 `
+
 const StyledLocation = styled.h3`
   margin: 0 0 0.5rem;
   padding: 0;
-  color: ${colors.dark};
-  font-size: ${fontSizes.xxxl};
-  ${devices.tablet`font-size: ${fontSizes.xxl};`};
-  ${devices.phone`font-size: ${fontSizes.xl};`};
+  color: var(--dark);
+  font-size: 1.75rem;
+  ${devices.tablet`font-size: 1.5rem`};
+  ${devices.phone`font-size: var(--font-size-xl)`};
   text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 `
+
 const StyledQuest = styled.div`
-  color: ${colors.eigengrau};
-  font-size: ${fontSizes.md};
-  ${devices.tablet`font-size: ${fontSizes.sm};`};
-  ${devices.phone`font-size: ${fontSizes.xs};`};
+  color: var(--eigengrau);
+  font-size: var(--font-size-md);
+  ${devices.tablet`font-size: var(--font-size-sm)`};
+  ${devices.phone`font-size: var(--font-size-xs)`};
+
   p {
     margin: 0;
     padding: 0;
@@ -160,7 +170,6 @@ const Splash = () => {
 
   return (
     <StyledSplash id="splash">
-      <StyledBackground image={backgroundImage} alt="" />
       <StyledTransitionGroup>
         {isMounted &&
           items.map((item, i) => (
@@ -169,6 +178,7 @@ const Splash = () => {
             </CSSTransition>
           ))}
       </StyledTransitionGroup>
+      <StyledBackground image={backgroundImage} alt="" />
     </StyledSplash>
   )
 }

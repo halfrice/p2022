@@ -1,42 +1,43 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { theme } from "@styles"
-
-const { anchor, colors } = theme
 
 const StyledAnchor = styled.div`
-  width: ${anchor.width};
-  height: ${anchor.width};
+  width: var(--anchor-width);
+  height: var(--anchor-width);
   background-color: transparent;
   z-index: 9999;
 `
+
 const StyledBars = styled.div`
   position: absolute;
   top: 50%;
-  width: ${anchor.width};
+  width: var(--anchor-width);
   height: 1px;
   border-radius: 3px;
+
   &:before,
   &:after {
     content: "";
     display: block;
-    background-color: ${colors.light};
+    background-color: var(--light);
     position: absolute;
-    width: ${anchor.width};
+    width: var(--anchor-width);
     height: 1px;
   }
+
   &:before {
-    top: ${(props) => (props.isToggled ? `0` : `-0.20rem`)};
-    transform: rotate(${(props) => (props.isToggled ? `45deg` : `0deg`)});
+    top: ${(props) => (props.isToggled ? "0" : "-0.20rem")};
+    transform: rotate(${(props) => (props.isToggled ? "45deg" : "0deg")});
     transition: ${(props) =>
-      props.isToggled ? anchor.beforeActive : anchor.before};
+      props.isToggled ? "var(--anchor-before-active)" : "var(--anchor-before)"};
   }
+
   &:after {
-    bottom: ${(props) => (props.isToggled ? `0` : `-0.20rem`)};
-    transform: rotate(${(props) => (props.isToggled ? `-45deg` : `0deg`)});
+    bottom: ${(props) => (props.isToggled ? "0" : "-0.20rem")};
+    transform: rotate(${(props) => (props.isToggled ? "-45deg" : "0deg")});
     transition: ${(props) =>
-      props.isToggled ? anchor.afterActive : anchor.after};
+      props.isToggled ? "var(--anchor-after-active)" : "var(--anchor-after)"};
   }
 `
 

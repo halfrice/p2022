@@ -2,45 +2,50 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { footerLinks } from "@config"
-import { devices, mixins, theme } from "@styles"
+import { devices, mixins } from "@styles"
 
-const { footer, colors } = theme
 const { flex } = mixins
 
 const StyledFooter = styled.div`
   ${flex.center};
-  height: ${footer.height};
-  ${devices.tablet`height: ${footer.heightMobile};`};
-  background-color: ${colors.lighterGray};
-  color: ${colors.eigengrau};
+  height: var(--footer-height);
+  ${devices.tablet`height: var(--footer-height-mobile)`};
+  background-color: var(--lighter-gray);
+  color: var(--eigengrau);
+  font-size: var(--font-size-sm);
 `
+
 const StyledWrapper = styled.footer`
   ${flex.between};
-  ${devices.tablet`${flex.center};`};
+  ${devices.tablet`${flex.center}`};
   flex-direction: row;
-  ${devices.tablet`flex-direction: column;`};
-  ${devices.tablet`padding: 3rem 0;`};
-  ${devices.phone`padding: 1.5rem 0;`};
+  ${devices.tablet`flex-direction: column`};
+  ${devices.tablet`padding: 3rem 0`};
+  ${devices.phone`padding: 1.5rem 0`};
   width: 100%;
   height: 100%;
 `
+
 const StyledCopyright = styled.div`
   ${flex.start};
-  margin: 0 0.25rem;
+  margin: 0 0.5rem;
 `
+
 const Links = styled.div`
   ${flex.center};
-  ${devices.tablet`${flex.start};`};
-  ${devices.tablet`margin-bottom: -0.5rem`};
+  ${devices.tablet`${flex.start}`};
+  ${devices.tablet`margin-bottom: -1rem`};
 `
+
 const StyledLink = styled(Link)`
   ${flex.center};
   height: 100%;
-  margin: 0 0.25rem;
+  margin: 0 0.5rem;
 `
+
 const StyledButton = styled.div`
-  margin: 0.375rem;
-  padding: 0.375rem 0;
+  margin: 0.5rem;
+  padding: 0.5rem 0;
 `
 
 const Footer = () => {

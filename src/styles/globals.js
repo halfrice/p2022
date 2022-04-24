@@ -23,7 +23,7 @@ const GlobalStyles = createGlobalStyle`
       overflow: hidden;
 
       main > * {
-        filter: blur(3px) brightness(0.8);
+        filter: blur(2px) brightness(0.8);
         transition: var(--transition);
         pointer-events: none;
         user-select: none;
