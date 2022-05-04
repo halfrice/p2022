@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react"
+import PropTypes from "prop-types"
 import { Link } from "react-scroll"
 import styled from "styled-components"
 import { Anchor, Menu } from "@components"
@@ -66,6 +67,30 @@ const StyledLink = styled(Link)`
   }
 `
 
+const StyledLogo = styled.div`
+  ${flex.center};
+  height: 100%;
+  margin: 0 0.5rem;
+
+  span {
+    margin: 0.5rem;
+    padding: 0.5rem 0;
+
+    svg {
+      width: var(--font-size-lg);
+      height: var(--font-size-lg);
+
+      #n {
+        stroke: var(--light);
+      }
+
+      #circle {
+        stroke: var(--light);
+      }
+    }
+  }
+`
+
 const StyledAnchorLink = styled.div`
   ${flex.center};
   height: 100%;
@@ -84,7 +109,7 @@ const StyledAnchorLink = styled.div`
   }
 `
 
-const Nav = () => {
+const Nav = ({ isHome }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDeviceMobile, setIsDeviceMobile] = useState(false)
 
@@ -132,21 +157,35 @@ const Nav = () => {
           <Menu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         )}
 
-        <StyledLink
-          duration={469}
-          offset={-44}
-          to={"splash"}
-          smooth={true}
-          spy={true}
-        >
-          <span>
-            <IconLogo />
-          </span>
-        </StyledLink>
+        {isHome ? (
+          <StyledLogo>
+            <Link
+              duration={469}
+              offset={-44}
+              to={"splash"}
+              smooth={true}
+              spy={true}
+              aria-label="home"
+            >
+              <span>
+                <IconLogo />
+              </span>
+            </Link>
+          </StyledLogo>
+        ) : (
+          <StyledLogo>
+            <a href="/" aria-label="home">
+              <span>
+                <IconLogo />
+              </span>
+            </a>
+          </StyledLogo>
+        )}
 
         {!isDeviceMobile && (
           <StyledLinks>
-            {navLinks &&
+            {isHome &&
+              navLinks &&
               navLinks.map(({ url, name }, i) => (
                 <StyledLink
                   duration={469}
@@ -164,6 +203,10 @@ const Nav = () => {
       </div>
     </StyledNav>
   )
+}
+
+Nav.propTypes = {
+  isHome: PropTypes.bool.isRequired,
 }
 
 export default Nav

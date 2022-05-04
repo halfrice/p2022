@@ -13,11 +13,13 @@ const StyledLayout = styled.div`
 `
 
 const Layout = ({ children }) => {
+  const isHome = location.pathname === "/"
+
   return (
     <StyledLayout>
       <Head />
       <GlobalStyles />
-      <Nav />
+      <Nav isHome={isHome} />
       <main>
         {children}
         <Footer />
