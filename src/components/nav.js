@@ -27,7 +27,7 @@ const StyledNav = styled.nav`
   transition: var(--transition);
   backdrop-filter: blur(1.25rem) saturate(180%);
   -webkit-backdrop-filter: blur(1.25rem) saturate(180%);
-  z-index: 9999;
+  z-index: 9998;
 
   .nav-content {
     ${flex.start};

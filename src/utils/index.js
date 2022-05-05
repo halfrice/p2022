@@ -1,5 +1,4 @@
-import scrollReveal from "./scrollReveal"
-import throttle from "./throttle"
-import useEventListener from "./useEventListener"
-
-export { scrollReveal, throttle, useEventListener }
+export { default as scrollReveal } from "./scrollReveal"
+export { default as throttle } from "./throttle"
+export { default as useEventListener } from "./useEventListener"
+export { default as useModal } from "./useModal"

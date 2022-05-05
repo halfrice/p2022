@@ -2,7 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { footerLinks } from "@config"
+import { Modal } from "@components"
 import { devices, mixins } from "@styles"
+import { useModal } from "@utils"
 
 const { flex } = mixins
 
@@ -48,7 +50,19 @@ const StyledButton = styled.div`
   padding: 0.5rem 0;
 `
 
+const ModalButton = styled.div`
+  margin: 0 1rem 0 0.5rem;
+  padding: 0.5rem 0;
+  color: var(--blue);
+
+  :hover {
+    cursor: pointer;
+  }
+`
+
 const Footer = () => {
+  const { isShowing, toggle } = useModal()
+
   return (
     <StyledFooter>
       <StyledWrapper>
@@ -56,6 +70,7 @@ const Footer = () => {
           <span>© {new Date().getFullYear()} Neel Pedersen</span>
         </StyledCopyright>
         <Links>
+          <ModalButton onClick={toggle}>Modal</ModalButton>
           {footerLinks &&
             footerLinks.map(({ name, url }, i) => (
               <StyledLink key={i} to={url}>
@@ -64,6 +79,7 @@ const Footer = () => {
             ))}
         </Links>
       </StyledWrapper>
+      <Modal isShowing={isShowing} hide={toggle} />
     </StyledFooter>
   )
 }
